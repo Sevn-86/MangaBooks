@@ -1,0 +1,17 @@
+﻿@page
+@model MangaBooks.Pages.Manga.ListModel
+@{
+}
+
+<h1>Manga List</h1>
+
+<table class="table">
+    @foreach(var manga in Model.Mangas)
+    {
+        <tr>
+            <td>@manga.Title</td>
+            <td>@manga.Chapters</td>
+            <td>@manga.Genre</td>
+        </tr>
+    }
+</table>
