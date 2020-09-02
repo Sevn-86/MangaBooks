@@ -15,14 +15,28 @@ namespace MangaBooks.Pages.Manga
 
         public IEnumerable<MangaB> Mangas { get; set; }
         
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+
+     
+
+
+
+
+
 
         public ListModel(IMangaBookData mangabookData)
+
+
         {
             this.mangabookData = mangabookData;
         }
         public void OnGet()
         {
-            Mangas = mangabookData.GetAll();
+            Mangas = mangabookData.GetMangasByTitle(SearchTerm);
+
+            
         }
     }
 }
