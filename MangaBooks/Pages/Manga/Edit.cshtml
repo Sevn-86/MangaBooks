@@ -1,0 +1,25 @@
+﻿@page  "{mangaId:int}"
+@model MangaBooks.Pages.Manga.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editing @Model.Manga.Title</h1>
+
+<form methode="post">
+
+    <input type="hidden" asp-for="Manga.Id" />
+    <div class="form-group">
+        <label asp-for="Manga.Title"></label>
+        <input asp-for="Manga.Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Manga.Chapters"></label>
+        <input asp-for="Manga.Chapters" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Manga.Genre"></label>
+        <select asp-for="Manga.Genre" asp-items="Model.Genres" class="form-control"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form> 
