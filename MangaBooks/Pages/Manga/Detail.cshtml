@@ -1,0 +1,19 @@
+﻿@page "{mangaId:int}"
+@model MangaBooks.Pages.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Model.MangaB.Title</h1>
+<div>
+    Id: @Model.MangaB.Id
+</div>
+<div>
+    Chapters: @Model.MangaB.Chapters
+</div>
+<div>
+    Genre: @Model.MangaB.Genre  
+</div>
+
+<a asp-page="./List" class="btn-default">All Mangas</a>
+

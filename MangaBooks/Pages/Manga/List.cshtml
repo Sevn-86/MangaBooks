@@ -24,6 +24,12 @@
             <td>@manga.Title</td>
             <td>@manga.Chapters</td>
             <td>@manga.Genre</td>
+            <td>
+                <a class="btn btn-lg" asp-page="./Detail" asp-route-mangaId="@manga.Id">
+                    <i class="fas fa-search-plus"></i>
+                </a>
+
+            </td>
         </tr>
     }
 </table>

@@ -18,14 +18,6 @@ namespace MangaBooks.Pages.Manga
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-
-     
-
-
-
-
-
-
         public ListModel(IMangaBookData mangabookData)
 
 
