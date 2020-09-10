@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MangaBook.Data;
-using MangaBooks.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MangaBooks.Core;
+using MangaBook.Data;
 
 namespace MangaBooks.Pages.Manga
 {
@@ -15,8 +15,9 @@ namespace MangaBooks.Pages.Manga
         private readonly IMangaBookData mangabookData;
         private readonly IHtmlHelper htmlHelper;
 
+        [BindProperty]
         public MangaB Manga { get; set; }
-        public IEnumerable<SelectListItem> Genres  { get; set; }
+        public IEnumerable<SelectListItem> Genres { get; set; }
 
         public EditModel(IMangaBookData mangabookData, IHtmlHelper htmlHelper)
         {
@@ -24,20 +25,45 @@ namespace MangaBooks.Pages.Manga
             this.htmlHelper = htmlHelper;
         }
 
-
-        public IActionResult OnGet(int mangaId)
+        public IActionResult OnGet(int? mangaId)
         {
             Genres = htmlHelper.GetEnumSelectList<Genre>();
-            Manga = mangabookData.GetById(mangaId);
-            if (Manga == null)
+            if (mangaId.HasValue)
+            {
+
+
+                Manga = mangabookData.GetById(mangaId.Value);
+            }
+            else
+            {
+                Manga = new MangaB();
+
+            }
+                if (Manga == null)
             {
                 return RedirectToPage("./NotFound"); 
             }
             return Page();
+        }
 
-
-
-
+      public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                Genres = htmlHelper.GetEnumSelectList<Genre>();
+                return Page();
+            }
+            if (Manga.Id > 0) 
+            {
+                mangabookData.Update(Manga);
+            }
+            else
+            {
+                mangabookData.Add(Manga);
+            }
+            mangabookData.Commit();
+            TempData["Message"] = "Manga Saved!";
+            return RedirectToPage("/Detail", new { mangaId = Manga.Id });
         }
     }
 }

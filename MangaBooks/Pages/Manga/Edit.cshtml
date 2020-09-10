@@ -1,4 +1,4 @@
-﻿@page  "{mangaId:int}"
+﻿@page  "{mangaId:int?}"
 @model MangaBooks.Pages.Manga.EditModel
 @{
     ViewData["Title"] = "Edit";
@@ -12,14 +12,17 @@
     <div class="form-group">
         <label asp-for="Manga.Title"></label>
         <input asp-for="Manga.Title" class="form-control" />
+        <span class"text-danger" asp-validation-for="Manga.Title"></span>
     </div>
     <div class="form-group">
         <label asp-for="Manga.Chapters"></label>
         <input asp-for="Manga.Chapters" class="form-control" />
+        <span class"text-danger" asp-validation-for="Manga.Chapters"></span>
     </div>
     <div class="form-group">
         <label asp-for="Manga.Genre"></label>
         <select asp-for="Manga.Genre" asp-items="Model.Genres" class="form-control"></select>
+        <span class"text-danger" asp-validation-for="Manga.Genre"></span>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form> 

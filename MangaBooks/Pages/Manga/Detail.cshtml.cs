@@ -13,6 +13,9 @@ namespace MangaBooks.Pages
     {
         private readonly IMangaBookData mangaData;
 
+        [TempData]
+        public string Message { get; set; }
+
         public DetailModel(IMangaBookData mangaData)
         {
             this.mangaData = mangaData;
